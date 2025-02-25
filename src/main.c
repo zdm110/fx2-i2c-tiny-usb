@@ -228,7 +228,7 @@ void handle_usb_setup(__xdata struct usb_req_setup *req)
 
 int main()
 {
-    CPUCS = _CLKSPD1;
+    CPUCS |= _CLKSPD0;
     usb_init(true);
     while (1)
     {

@@ -21,6 +21,16 @@ This firmware is using 'Software I2C', so speed is not as lightning, and equals 
 
 
 
+## 固件烧录
+
+`fxload load_ram --ihex-path i2c-tiny-usb.hex  -t FX2LP --device 04b4:8613`
+
+烧录到EEPROM, 注意拔掉J4
+
+`fxload load_eeprom --ihex-path i2c-tiny-usb.hex  -t FX2LP --control-byte 0xC2 --device 04b4:8613`
+
+注意：这个指令无法烧录成功，目前在Windows下用官方的USB Control Center烧录
+
 ## 使用
 
 示例，读取LM75BD温度传感器模块
