@@ -8,7 +8,7 @@
 # See the configuration in fx2conf.mk as well.
 include $(LIBFX2)/fx2conf.mk
 
-# Name of our build product. Build will create $(FIRMWARE).ihex.
+# Name of our build product. Build will create $(FIRMWARE).hex.
 TARGET  	?= firmware
 
 # List of C or assembly sources that comprise our firmware.
@@ -24,9 +24,9 @@ OBJECTS 	 = \
 	$(patsubst %,build/%.rel,$(SOURCES)) \
 	$(patsubst %,$(LIBFX2)/lib/$(MODEL)/%.lib,$(LIBRARIES))
 
-all: $(TARGET).ihex
+all: $(TARGET).hex
 
-$(TARGET).ihex: $(OBJECTS) $(LIBFX2)/.stamp
+$(TARGET).hex: $(OBJECTS) $(LIBFX2)/.stamp
 	$(SDCC) -o build/$@ $(OBJECTS)
 	@cp build/$@ $@
 
@@ -43,9 +43,9 @@ build/%.rel: %.asm
 	$(SDAS) $@ $<
 
 clean:
-	@rm -rf build/ $(TARGET).ihex
+	@rm -rf build/ $(TARGET).hex
 
-load: $(TARGET).ihex
+load: $(TARGET).hex
 	$(FX2LOAD) $<
 
 .PHONY: all clean load
